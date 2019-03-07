@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Hexo搭建指南</title>
+      <link href="/2019/03/07/hexo-da-jian-zhi-nan/"/>
+      <url>/2019/03/07/hexo-da-jian-zhi-nan/</url>
+      
+        <content type="html"><![CDATA[<ul><li><h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><pre><code>  yum -y install git  git config --global user.name &quot;ilixiaofu&quot;// github用户名  git config --global user.email  &quot;ilixiaofu@qq.com&quot;// github注册邮箱</code></pre></li><li><h2 id="安装NVM"><a href="#安装NVM" class="headerlink" title="安装NVM"></a>安装NVM</h2><pre><code>  git clone https://github.com/creationix/nvm.git  source nvm/nvm.sh</code></pre></li><li><h2 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="安装Nodejs"></a>安装Nodejs</h2><pre><code>  nvm install stable  添加Node环境变量  vim /etc/profile  在底部添加 PATH 变量  export PATH=$PATH:/usr/local/node/bin  source /etc/profile</code></pre></li><li><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><pre><code>  npm install -g hexo-cli</code></pre></li><li><h2 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h2><pre><code>  hexo init &lt;文件名&gt;  hexo g == hexo generate       hexo d == hexo deploy  hexo s == hexo server  hexo n == hexo new  hexo clean</code></pre></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

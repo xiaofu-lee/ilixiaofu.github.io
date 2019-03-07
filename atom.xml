@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>bluce-lee</title>
+  
+  <subtitle>bluce-lee</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://ilixiaofu.github.io/"/>
+  <updated>2019-03-06T18:44:53.424Z</updated>
+  <id>https://ilixiaofu.github.io/</id>
+  
+  <author>
+    <name>lixiaofu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo搭建指南</title>
+    <link href="https://ilixiaofu.github.io/2019/03/07/hexo-da-jian-zhi-nan/"/>
+    <id>https://ilixiaofu.github.io/2019/03/07/hexo-da-jian-zhi-nan/</id>
+    <published>2019-03-06T18:33:10.000Z</published>
+    <updated>2019-03-06T18:44:53.424Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;h2 id=&quot;安装Git&quot;&gt;&lt;a href=&quot;#安装Git&quot; class=&quot;headerlink&quot; title=&quot;安装Git&quot;&gt;&lt;/a&gt;安装Git&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;  yum -y install git
+  git config
+        
+      
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://ilixiaofu.github.io/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="https://ilixiaofu.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+</feed>
