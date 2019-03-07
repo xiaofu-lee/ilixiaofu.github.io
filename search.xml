@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>表达式求值</title>
+      <link href="/2019/03/07/biao-da-shi-qiu-zhi/"/>
+      <url>/2019/03/07/biao-da-shi-qiu-zhi/</url>
+      
+        <content type="html"><![CDATA[<pre><code>#include &lt;stack&gt;#include &lt;stdio.h&gt;#define MAX 0x7FFFFFFF#define MIN 0xFFFFFFFFusing namespace std;// 操作数栈stack&lt;int&gt; sOPND;// 操作符栈stack&lt;char&gt; sOPTR;// 操作符集合表char OPTR[] = {&#39;+&#39;, &#39;-&#39;, &#39;*&#39;, &#39;/&#39;, &#39;(&#39;, &#39;)&#39;, &#39;#&#39;, &#39;\0&#39;};// 操作符优先级表char PrecedeR[][7] = {    //+    -    *    /    (    )    #    {&#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;},  // +    {&#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;},  // -    {&#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&lt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;},  // *    {&#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&lt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;},  // /    {&#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;=&#39;, &#39; &#39;},  // (    {&#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39; &#39;, &#39;&gt;&#39;, &#39;&gt;&#39;},  // )    {&#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39; &#39;, &#39;=&#39;}}; // #// 判断是否在操作符集合 返回所在集合索引int IsInOP(char op){    int i;    for (i = 0; OPTR[i] != &#39;\0&#39;; ++i)    {        if (op == OPTR[i])        {            // 返回索引            return i;        }    }    return MIN;}// 判断两个操作符的优先级char Precede(char ch1, char ch2){    if (IsInOP(ch1) != -1 &amp;&amp; IsInOP(ch2) != -1)    {        return PrecedeR[IsInOP(ch1)][IsInOP(ch2)];    }    return &#39; &#39;;}// 判断是否是操作数int IsDigit(char ch){    if (ch &gt;= &#39;0&#39; &amp;&amp; ch &lt;= &#39;9&#39;)    {        return 1;    }    return 0;}// 执行运算操作int Operate(char theta, int a, int b){    switch (theta)    {    case &#39;+&#39;:        return a + b;    case &#39;-&#39;:        return a - b;    case &#39;*&#39;:        return a * b;    case &#39;/&#39;:        return a / b;    default:        return MAX;    }}int calculator(const char *str){    int position = 0, num = 0;    sOPTR.push(&#39;#&#39;);    while (str[position] != &#39;#&#39; || sOPTR.top() != &#39;#&#39;)    {        char ch = str[position];        if (IsDigit(ch))        {            num = num * 10 + (ch - &#39;0&#39;);            position++;        }        else        {            if (num != 0)            {                // 是操作数则进操作数栈                sOPND.push(num);                // 清零                num = 0;            }            switch (Precede(sOPTR.top(), ch))            {            case &#39;&lt;&#39;:                // 期待符优先级高于操作符栈顶元素则期待符入栈，读头指向下一个期待符                sOPTR.push(ch);                position++;                break;            case &#39;&gt;&#39;:            {                // 期待符优先级低于操作符栈顶元素则操作符栈顶元素出栈                // 操作数栈弹出两个操作数 进行相应的算数符号运算并将运算结果压入操作数栈                int b = sOPND.top();                sOPND.pop();                int a = sOPND.top();                sOPND.pop();                sOPND.push(Operate(sOPTR.top(), a, b));                sOPTR.pop();                break;            }            case &#39;=&#39;:                // 期待符优先级等于操作符栈顶元素则操作符栈顶元素出栈，读头指向下一个期待符                sOPTR.pop();                position++;                break;            }        }    }    if (!sOPTR.empty())    {        return sOPND.top();    }    return MAX;}int main(int argc, char const *argv[]){    char str[80];    while (1)    {        printf(&quot;请输入算数表达式\n&quot;);        gets(str);        sprintf(str, &quot;%s%c&quot;, str, &#39;#&#39;);        int result = calculator(str);        printf(&quot;计算结果:%d\n&quot;, result);    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 表达式求值 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo搭建指南</title>
       <link href="/2019/03/07/hexo-da-jian-zhi-nan/"/>
       <url>/2019/03/07/hexo-da-jian-zhi-nan/</url>
