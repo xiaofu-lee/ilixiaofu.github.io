@@ -4,12 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="迷宫求解, blog">
-    <meta name="description" content="#include &amp;lt;math.h&amp;gt;
-#include &amp;lt;stack&amp;gt;
+    <meta name="keywords" content="C++实现观察者模式, blog">
+    <meta name="description" content="#include &amp;lt;assert.h&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;set&amp;gt;
 #include &amp;lt;stdio.h&amp;gt;
-#include &amp;lt;stdlib.h&amp;gt;
-#include &amp;lt;time.h&amp;gt">
+
+using namespace std;
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>迷宫求解 | bluce-lee</title>
+    <title>C++实现观察者模式 | bluce-lee</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -261,13 +263,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        迷宫求解
+                        C++实现观察者模式
                     </div>
                 </div>
             </div>
@@ -277,10 +279,80 @@
 
 
 
-<main class="container content">
+<main class="post-container content">
 
     
-    <!-- 文章内容详情 -->
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
@@ -290,15 +362,7 @@
                     <div class="article-tag">
                         
                             <a href="/tags/C/" target="_blank">
-                                <span class="chip bg-color">C</span>
-                            </a>
-                        
-                            <a href="/tags/算法/" target="_blank">
-                                <span class="chip bg-color">算法</span>
-                            </a>
-                        
-                            <a href="/tags/迷宫求解/" target="_blank">
-                                <span class="chip bg-color">迷宫求解</span>
+                                <span class="chip bg-color">C++</span>
                             </a>
                         
                     </div>
@@ -309,8 +373,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                算法
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                C++
                             </a>
                         
                     </div>
@@ -337,214 +401,132 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code>#include &lt;math.h&gt;
-#include &lt;stack&gt;
+                <pre><code>#include &lt;assert.h&gt;
+#include &lt;iostream&gt;
+#include &lt;set&gt;
 #include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;time.h&gt;
-#include &lt;windows.h&gt;
-
-#define MARTIX 10
-
-#define NO_ACCESS 0
-#define ACCESS 1
-#define ACCESSED -1
 
 using namespace std;
 
-int map[MARTIX][MARTIX] = {
-//   0  1  2  3  4  5  6  7  8  9
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // 0
-    {0, 0, 1, 0, 1, 1, 1, 1, 1, 0}, // 1
-    {0, 1, 0, 0, 1, 0, 1, 0, 1, 0}, // 2
-    {0, 1, 1, 1, 1, 0, 0, 1, 1, 0}, // 3
-    {0, 1, 0, 0, 1, 1, 1, 1, 0, 0}, // 4
-    {0, 1, 1, 1, 0, 1, 0, 1, 1, 0}, // 5
-    {0, 1, 0, 1, 1, 1, 0, 0, 1, 0}, // 6
-    {0, 1, 0, 0, 0, 0, 0, 1, 1, 0}, // 7
-    {0, 1, 1, 1, 1, 1, 1, 1, 1, 0}, // 8
-    {0, 0, 0, 0, 0, 0, 0, 0, 1, 0}  // 9
+class Observable;
+
+class Observer
+{
+public:
+  Observer() {}
+  virtual void update(Observable *observable, void *arg) = 0;
+
+private:
+  Observer(const Observer &amp;observer);
+  Observer &amp;operator=(const Observer &amp;observer);
 };
 
-enum Direct
+class Observable
 {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
+public:
+  virtual ~Observable()
+  {
+    delete instance;
+  }
+  void addObserver(Observer *observer);
+  void notifyObservers();
+  void notifyObservers(void *arg);
+  void setChanged(bool changed);
+  static Observable *getInstance();
+
+private:
+  Observable();
+
+protected:
+  void setUnChanged(bool unChanged);
+
+private:
+  static Observable *instance;
+  bool changed;
+  set&lt;Observer *&gt; observers;
 };
 
-typedef struct _POS
+Observable::Observable()
 {
-    int x;
-    int y;
-} POS;
-
-struct Player
-{
-    int x;
-    int y;
-} player;
-
-stack&lt;POS&gt; his_pos_stack;
-
-void gotoxy(int x, int y)
-{
-    COORD coord;
-    coord.X = (short)x;
-    coord.Y = (short)y;
-    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-    //SetConsoleTextAttribute(handle,FOREGROUND_INTENSITY | BACKGROUND_BLUE);
-    SetConsoleTextAttribute(handle, BACKGROUND_INTENSITY | BACKGROUND_GREEN);
-    SetConsoleCursorPosition(handle, coord);
+  this-&gt;changed = false;
 }
 
-void gotoEnd()
+void Observable::addObserver(Observer *observer)
 {
-    gotoxy(0, MARTIX + 1);
+  assert(observer);
+  this-&gt;observers.insert(observer);
 }
 
-void InitMap(int (*agr)[10])
+void Observable::setChanged(bool changed)
 {
-    int i, j;
-    for (i = 0; i &lt; 10; i++)
-    {
-        for (j = 0; j &lt; 10; j++)
-        {
-            gotoxy(j * 2, i);
-            if (agr[i][j] == 1)
-            {
-                printf(&quot;?&quot;);
-            }
-            else
-            {
-                printf(&quot;?&quot;);
-            }
-        }
-        printf(&quot;\n&quot;);
-    }
+  this-&gt;changed = changed;
 }
 
-void drawPlayer()
+void Observable::setUnChanged(bool unChanged)
 {
-    gotoxy(player.x * 2, player.y);
-    printf(&quot;?&quot;);
-    gotoEnd();
+  this-&gt;changed = unChanged;
 }
 
-void SetPlayerPos(Player *mPlayer, int x, int y)
+void Observable::notifyObservers()
 {
-    mPlayer-&gt;x = x;
-    mPlayer-&gt;y = y;
+  notifyObservers(NULL);
 }
 
-int GetPositionStatus(int (*args)[10], int x, int y)
+void Observable::notifyObservers(void *arg)
 {
-    return args[y][x];
+  if (!changed)
+    return;
+  this-&gt;setUnChanged(!this-&gt;changed);
+
+  set&lt;Observer *&gt;::iterator it;
+
+  for (it = this-&gt;observers.begin(); it != this-&gt;observers.end(); it++)
+  {
+    Observer *obs = *it;
+    obs-&gt;update(this, arg);
+  }
+}
+Observable *Observable::instance = new Observable();
+Observable *Observable::getInstance()
+{
+  return Observable::instance;
 }
 
-void SetPositionStatus(int (*args)[10], int x, int y, int status)
+class AObserver : public Observer
 {
-    args[y][x] = status;
-}
+public:
+  void update(Observable *observable, void *arg)
+  {
+    printf(&quot;AObserver::  %d \n&quot;, *((int *)arg));
+  }
+};
 
-void back()
+class BObserver : public Observer
 {
-    gotoxy(player.x * 2, player.y);
-    printf(&quot;?&quot;);
-    gotoEnd();
-    his_pos_stack.pop();
-    POS last_pos = his_pos_stack.top();
-    player.x = last_pos.x;
-    player.y = last_pos.y;
-    drawPlayer();
-}
-
-void go(int x, int y)
-{
-    gotoxy(player.x * 2, player.y);
-    printf(&quot;?&quot;);
-    gotoEnd();
-    SetPositionStatus(map, x, y, ACCESSED);
-    SetPlayerPos(&amp;player, x, y);
-    drawPlayer();
-    POS new_pos;
-    new_pos.x = x;
-    new_pos.y = y;
-    his_pos_stack.push(new_pos);
-}
-
-void move()
-{
-    POS last_pos = his_pos_stack.top();
-    POS cur_pos[4];
-    int length = -1;
-    if (GetPositionStatus(map, last_pos.x, last_pos.y - 1) == ACCESS)
-    {
-        cur_pos[++length].x = last_pos.x;
-        cur_pos[length].y = last_pos.y - 1;
-    }
-    if (GetPositionStatus(map, last_pos.x, last_pos.y + 1) == ACCESS)
-    {
-        cur_pos[++length].x = last_pos.x;
-        cur_pos[length].y = last_pos.y + 1;
-    }
-    if (GetPositionStatus(map, last_pos.x - 1, last_pos.y) == ACCESS)
-    {
-        cur_pos[++length].x = last_pos.x - 1;
-        cur_pos[length].y = last_pos.y;
-    }
-    if (GetPositionStatus(map, last_pos.x + 1, last_pos.y) == ACCESS)
-    {
-        cur_pos[++length].x = last_pos.x + 1;
-        cur_pos[length].y = last_pos.y;
-    }
-    if (length &gt; -1)
-    {
-        int index = rand() % (length + 1);
-        go(cur_pos[index].x, cur_pos[index].y);
-    }
-    else
-    {
-        back();
-    }
-}
-
-void InitPos(int x, int y)
-{
-    SetPlayerPos(&amp;player, x, y);
-    SetPositionStatus(map, x, y, ACCESSED);
-    POS init_pos;
-    init_pos.x = x;
-    init_pos.y = x;
-    his_pos_stack.push(init_pos);
-}
-
-void init()
-{
-    InitMap(map);
-    InitPos(1, 1);
-    drawPlayer();
-}
+public:
+  void update(Observable *observable, void *arg)
+  {
+    printf(&quot;BObserver::  %d \n&quot;, *((int *)arg));
+  }
+};
 
 int main(int argc, char const *argv[])
 {
-    srand((unsigned int)time(NULL));
-    init();
-    while (1)
-    {
-        Sleep(1000);
-        move();
-        if (player.x == 8 &amp;&amp; player.y == 9)
-        {
-            printf(&quot;winer\n&quot;);
-            break;
-        }
-    }
-    system(&quot;pause&quot;);
-    return 0;
-}
+  cout &lt;&lt; &quot;-----------------------------\n&quot;;
+  Observable *observable = Observable::getInstance();
+  observable-&gt;setChanged(true);
 
+  AObserver *a = new AObserver();
+  BObserver *b = new BObserver();
+  observable-&gt;addObserver(a);
+  observable-&gt;addObserver(b);
+  int num = 2;
+  int *p = &amp;num;
+  observable-&gt;notifyObservers(p);
+
+  cout &lt;&lt; &quot;-----------------------------\n&quot;;
+  return 0;
+}
 </code></pre>
             </div>
             <hr>
@@ -692,7 +674,7 @@ int main(int argc, char const *argv[])
                     </span>
                     <a href="https://ilixiaofu.github.io" class="b-link-green">bluce-lee</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/07/mi-gong-qiu-jie/" class="b-link-green">迷宫求解</a>
+                    <a href="/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/" class="b-link-green">C++实现观察者模式</a>
                 </p>
             </div>
         </div>
@@ -715,7 +697,8 @@ int main(int argc, char const *argv[])
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/">
                     <div class="card-image">
@@ -735,9 +718,9 @@ int main(int argc, char const *argv[])
 using namespace std;
 </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -750,6 +733,7 @@ using namespace std;
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -768,25 +752,21 @@ using namespace std;
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/03/07/biao-da-shi-qiu-zhi/">
+                <a href="/2019/03/07/mi-gong-qiu-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="表达式求值">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="迷宫求解">
                         
-                        <span class="card-title">表达式求值</span>
+                        <span class="card-title">迷宫求解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">#include &lt;stack&gt;
+                    <div class="summary">#include &lt;math.h&gt;
+#include &lt;stack&gt;
 #include &lt;stdio.h&gt;
-
-#define MAX 0x7FFFFFFF
-#define MIN 0xFFFFFFFF
-
-using namespace std;
-
-//</div>
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-07
@@ -814,8 +794,8 @@ using namespace std;
                         <span class="chip bg-color">算法</span>
                     </a>
                     
-                    <a href="/tags/表达式求值/" target="_blank">
-                        <span class="chip bg-color">表达式求值</span>
+                    <a href="/tags/迷宫求解/" target="_blank">
+                        <span class="chip bg-color">迷宫求解</span>
                     </a>
                     
                 </div>
@@ -828,6 +808,53 @@ using namespace std;
 </div>
 
 
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
     
 
 </main>

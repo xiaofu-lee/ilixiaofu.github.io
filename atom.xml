@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ilixiaofu.github.io/"/>
-  <updated>2019-03-06T19:33:21.197Z</updated>
+  <updated>2019-03-06T19:45:24.729Z</updated>
   <id>https://ilixiaofu.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++实现观察者模式</title>
+    <link href="https://ilixiaofu.github.io/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/"/>
+    <id>https://ilixiaofu.github.io/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/</id>
+    <published>2019-03-06T19:37:54.000Z</published>
+    <updated>2019-03-06T19:45:24.729Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre&gt;&lt;code&gt;#include &amp;lt;assert.h&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;set&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;
+
+using namespace std;
+
+class
+        
+      
+    
+    </summary>
+    
+      <category term="C++" scheme="https://ilixiaofu.github.io/categories/C/"/>
+    
+    
+      <category term="C++" scheme="https://ilixiaofu.github.io/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>迷宫求解</title>

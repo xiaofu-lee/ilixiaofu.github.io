@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>C++实现观察者模式</title>
+      <link href="/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/"/>
+      <url>/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/</url>
+      
+        <content type="html"><![CDATA[<pre><code>#include &lt;assert.h&gt;#include &lt;iostream&gt;#include &lt;set&gt;#include &lt;stdio.h&gt;using namespace std;class Observable;class Observer{public:  Observer() {}  virtual void update(Observable *observable, void *arg) = 0;private:  Observer(const Observer &amp;observer);  Observer &amp;operator=(const Observer &amp;observer);};class Observable{public:  virtual ~Observable()  {    delete instance;  }  void addObserver(Observer *observer);  void notifyObservers();  void notifyObservers(void *arg);  void setChanged(bool changed);  static Observable *getInstance();private:  Observable();protected:  void setUnChanged(bool unChanged);private:  static Observable *instance;  bool changed;  set&lt;Observer *&gt; observers;};Observable::Observable(){  this-&gt;changed = false;}void Observable::addObserver(Observer *observer){  assert(observer);  this-&gt;observers.insert(observer);}void Observable::setChanged(bool changed){  this-&gt;changed = changed;}void Observable::setUnChanged(bool unChanged){  this-&gt;changed = unChanged;}void Observable::notifyObservers(){  notifyObservers(NULL);}void Observable::notifyObservers(void *arg){  if (!changed)    return;  this-&gt;setUnChanged(!this-&gt;changed);  set&lt;Observer *&gt;::iterator it;  for (it = this-&gt;observers.begin(); it != this-&gt;observers.end(); it++)  {    Observer *obs = *it;    obs-&gt;update(this, arg);  }}Observable *Observable::instance = new Observable();Observable *Observable::getInstance(){  return Observable::instance;}class AObserver : public Observer{public:  void update(Observable *observable, void *arg)  {    printf(&quot;AObserver::  %d \n&quot;, *((int *)arg));  }};class BObserver : public Observer{public:  void update(Observable *observable, void *arg)  {    printf(&quot;BObserver::  %d \n&quot;, *((int *)arg));  }};int main(int argc, char const *argv[]){  cout &lt;&lt; &quot;-----------------------------\n&quot;;  Observable *observable = Observable::getInstance();  observable-&gt;setChanged(true);  AObserver *a = new AObserver();  BObserver *b = new BObserver();  observable-&gt;addObserver(a);  observable-&gt;addObserver(b);  int num = 2;  int *p = &amp;num;  observable-&gt;notifyObservers(p);  cout &lt;&lt; &quot;-----------------------------\n&quot;;  return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>迷宫求解</title>
       <link href="/2019/03/07/mi-gong-qiu-jie/"/>
       <url>/2019/03/07/mi-gong-qiu-jie/</url>
