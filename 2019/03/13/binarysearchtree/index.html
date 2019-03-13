@@ -4,14 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="C++实现观察者模式, blog">
-    <meta name="description" content="#include &amp;lt;assert.h&amp;gt;
-#include &amp;lt;iostream&amp;gt;
-#include &amp;lt;set&amp;gt;
-#include &amp;lt;stdio.h&amp;gt;
+    <meta name="keywords" content="C语言实现二叉搜索树, blog">
+    <meta name="description" content="二叉搜索树#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
 
-using namespace std;
-">
+#define TYPE int
+
+typedef struct BSTreeNode
+{
+    TYPE key;
+   ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +21,7 @@ using namespace std;
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C++实现观察者模式 | bluce-lee</title>
+    <title>C语言实现二叉搜索树 | bluce-lee</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -276,13 +278,13 @@ using namespace std;
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C++实现观察者模式
+                        C语言实现二叉搜索树
                     </div>
                 </div>
             </div>
@@ -375,7 +377,15 @@ using namespace std;
                     <div class="article-tag">
                         
                             <a href="/tags/C/" target="_blank">
-                                <span class="chip bg-color">C++</span>
+                                <span class="chip bg-color">C</span>
+                            </a>
+                        
+                            <a href="/tags/数据结构/" target="_blank">
+                                <span class="chip bg-color">数据结构</span>
+                            </a>
+                        
+                            <a href="/tags/二叉搜索树/" target="_blank">
+                                <span class="chip bg-color">二叉搜索树</span>
                             </a>
                         
                     </div>
@@ -386,8 +396,8 @@ using namespace std;
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/C/" class="post-category" target="_blank">
-                                C++
+                            <a href="/categories/数据结构/" class="post-category" target="_blank">
+                                数据结构
                             </a>
                         
                     </div>
@@ -398,21 +408,21 @@ using namespace std;
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-03-07
+                    2019-03-13
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        276
+                        729
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        3 分
                     </div>
                     
                 
@@ -428,131 +438,263 @@ using namespace std;
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code>#include &lt;assert.h&gt;
-#include &lt;iostream&gt;
-#include &lt;set&gt;
-#include &lt;stdio.h&gt;
+                <h1 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h1><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
-using namespace std;
+#define TYPE int
 
-class Observable;
-
-class Observer
+typedef struct BSTreeNode
 {
-public:
-  Observer() {}
-  virtual void update(Observable *observable, void *arg) = 0;
+    TYPE key;
+    struct BSTreeNode *parent; // 父节点
+    struct BSTreeNode *left;   // 做孩子节点
+    struct BSTreeNode *right;  // 右孩子节点
+} Node, *BSTree;
 
-private:
-  Observer(const Observer &amp;observer);
-  Observer &amp;operator=(const Observer &amp;observer);
-};
-
-class Observable
+// 创建节点
+Node *createNode(TYPE key)
 {
-public:
-  virtual ~Observable()
-  {
-    delete instance;
-  }
-  void addObserver(Observer *observer);
-  void notifyObservers();
-  void notifyObservers(void *arg);
-  void setChanged(bool changed);
-  static Observable *getInstance();
-
-private:
-  Observable();
-
-protected:
-  void setUnChanged(bool unChanged);
-
-private:
-  static Observable *instance;
-  bool changed;
-  set&lt;Observer *&gt; observers;
-};
-
-Observable::Observable()
-{
-  this-&gt;changed = false;
+    Node *node = (Node *)malloc(sizeof(Node));
+    node-&gt;key = key;
+    node-&gt;parent = NULL;
+    node-&gt;left = node-&gt;right = NULL;
+    return node;
 }
 
-void Observable::addObserver(Observer *observer)
+// 插入节点
+void insertNode(BSTree *tree, Node *node)
 {
-  assert(observer);
-  this-&gt;observers.insert(observer);
+    BSTree p = *tree;
+    Node *parentNode = NULL;
+    // 查找插入节点
+    while (p)
+    {
+        parentNode = p;
+        if (node-&gt;key &lt; p-&gt;key)
+        {
+            p = p-&gt;left;
+        }
+        else
+        {
+            p = p-&gt;right;
+        }
+    }
+    // 没有找到即根节点为空
+    if (parentNode == NULL)
+    {
+        *tree = node;
+        return;
+    }
+    if (node-&gt;key &lt; parentNode-&gt;key)
+    {
+        // 插入左孩子
+        parentNode-&gt;left = node;
+    }
+    else
+    {
+        // 插入右孩子
+        parentNode-&gt;right = node;
+    }
+    node-&gt;parent = parentNode;
 }
 
-void Observable::setChanged(bool changed)
+// 查找节点
+Node *searchNode(BSTree tree, TYPE key)
 {
-  this-&gt;changed = changed;
+    BSTree p = tree;
+    while (p &amp;&amp; p-&gt;key != key)
+    {
+        if (key &lt; p-&gt;key)
+        {
+            p = p-&gt;left;
+        }
+        else
+        {
+            p = p-&gt;right;
+        }
+    }
+    return p;
 }
 
-void Observable::setUnChanged(bool unChanged)
+// 查找最小节点
+Node *findMinNode(BSTree tree)
 {
-  this-&gt;changed = unChanged;
+    BSTree p = tree;
+    while (p-&gt;left != NULL)
+    {
+        p = p-&gt;left;
+    }
+    return p;
 }
 
-void Observable::notifyObservers()
+// 查找最大节点
+Node *findMaxNode(BSTree tree)
 {
-  notifyObservers(NULL);
+    BSTree p = tree;
+    while (p-&gt;right != NULL)
+    {
+        p = p-&gt;right;
+    }
+    return p;
 }
 
-void Observable::notifyObservers(void *arg)
+// 删除节点
+void deleteNode(BSTree *tree, TYPE key)
 {
-  if (!changed)
-    return;
-  this-&gt;setUnChanged(!this-&gt;changed);
-
-  set&lt;Observer *&gt;::iterator it;
-
-  for (it = this-&gt;observers.begin(); it != this-&gt;observers.end(); it++)
-  {
-    Observer *obs = *it;
-    obs-&gt;update(this, arg);
-  }
+    BSTree p = *tree;
+    Node *node = searchNode(p, key);
+    // 节点不存在
+    if (!node)
+    {
+        return;
+    }
+    // 待删除节点左右孩子为空
+    if (!(node-&gt;left) &amp;&amp; !(node-&gt;right))
+    {
+        // 是父节点
+        if (node == *tree)
+        {
+            tree = NULL;
+            free(p);
+            return;
+        }
+        if (node == node-&gt;parent-&gt;left)
+        {
+            node-&gt;parent-&gt;left = NULL;
+        }
+        else
+        {
+            node-&gt;parent-&gt;right = NULL;
+        }
+        free(node);
+    }
+    // 左右孩子节点均不为空
+    else if (node-&gt;left &amp;&amp; node-&gt;right)
+    {
+        // 查找待删节点右子树最小节点
+        Node *minNode = findMinNode(node-&gt;right);
+        // 最小节点在父节点的左孩子
+        if (minNode == minNode-&gt;parent-&gt;left)
+        {
+            // 清空父子节点的右子树
+            minNode-&gt;parent-&gt;left = NULL;
+        }
+        else
+        {
+            // 清空父子节点的左子树
+            minNode-&gt;parent-&gt;right = NULL;
+        }
+        // 继承待删除节点的父节点，及左右子树
+        minNode-&gt;parent = node-&gt;parent;
+        minNode-&gt;left = node-&gt;left;
+        minNode-&gt;right = node-&gt;right;
+        // 是父节点
+        if (!(node-&gt;parent))
+        {
+            *tree = minNode;
+        }
+        else
+        {
+            if (node == node-&gt;parent-&gt;left)
+            {
+                node-&gt;parent-&gt;left = minNode;
+            }
+            else
+            {
+                node-&gt;parent-&gt;right = minNode;
+            }
+        }
+        free(node);
+    }
+    else
+    {
+        // 待删除节点左右子树有一个为空
+        // 保存孩子节点
+        Node *childNode = (node-&gt;left) ? (node-&gt;left) : (node-&gt;right);
+        // 待删节点是根节点
+        if (!(node-&gt;parent))
+        {
+            childNode-&gt;parent = NULL;
+            *tree = childNode;
+        }
+        else
+        {
+            childNode-&gt;parent = node-&gt;parent;
+            if (node == node-&gt;parent-&gt;left)
+            {
+                node-&gt;parent-&gt;left = childNode;
+            }
+            else
+            {
+                node-&gt;parent-&gt;right = childNode;
+            }
+        }
+        free(node);
+    }
 }
-Observable *Observable::instance = new Observable();
-Observable *Observable::getInstance()
+
+//  先序遍历
+void DLR(BSTree tree)
 {
-  return Observable::instance;
+    if (tree == NULL)
+    {
+        return;
+    }
+    printf(&quot;%d  &quot;, tree-&gt;key);
+    DLR(tree-&gt;left);
+    DLR(tree-&gt;right);
 }
 
-class AObserver : public Observer
+// 中序遍历
+void LDR(BSTree tree)
 {
-public:
-  void update(Observable *observable, void *arg)
-  {
-    printf(&quot;AObserver::  %d \n&quot;, *((int *)arg));
-  }
-};
+    if (tree == NULL)
+    {
+        return;
+    }
+    LDR(tree-&gt;left);
+    printf(&quot;%d  &quot;, tree-&gt;key);
+    LDR(tree-&gt;right);
+}
 
-class BObserver : public Observer
+// 后序遍历
+void LRD(BSTree tree)
 {
-public:
-  void update(Observable *observable, void *arg)
-  {
-    printf(&quot;BObserver::  %d \n&quot;, *((int *)arg));
-  }
-};
+    if (tree == NULL)
+    {
+        return;
+    }
+    LRD(tree-&gt;left);
+    LRD(tree-&gt;right);
+    printf(&quot;%d  &quot;, tree-&gt;key);
+}
 
 int main(int argc, char const *argv[])
 {
-  cout &lt;&lt; &quot;-----------------------------\n&quot;;
-  Observable *observable = Observable::getInstance();
-  observable-&gt;setChanged(true);
+    BSTree tree = NULL;
+    TYPE value[8] = {10, 20, 30, 40, 5, 25, 15, 5};
+    Node *node = NULL;
+    for (int i = 0; i &lt; 8; i++)
+    {
+        node = createNode(value[i]);
+        insertNode(&amp;tree, node);
+    }
+    DLR(tree);
+    printf(&quot;\n&quot;);
+    LRD(tree);
+    printf(&quot;\n&quot;);
+    LDR(tree);
+    printf(&quot;\n&quot;);
 
-  AObserver *a = new AObserver();
-  BObserver *b = new BObserver();
-  observable-&gt;addObserver(a);
-  observable-&gt;addObserver(b);
-  int num = 2;
-  int *p = &amp;num;
-  observable-&gt;notifyObservers(p);
+    deleteNode(&amp;tree, 30);
 
-  cout &lt;&lt; &quot;-----------------------------\n&quot;;
-  return 0;
+    node = createNode(35);
+    insertNode(&amp;tree, node);
+
+    LDR(tree);
+    printf(&quot;\n&quot;);
+
+    return 0;
 }
 </code></pre>
             </div>
@@ -701,7 +843,7 @@ int main(int argc, char const *argv[])
                     </span>
                     <a href="https://ilixiaofu.github.io" class="b-link-green">bluce-lee</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/" class="b-link-green">C++实现观察者模式</a>
+                    <a href="/2019/03/13/binarysearchtree/" class="b-link-green">C语言实现二叉搜索树</a>
                 </p>
             </div>
         </div>
@@ -724,7 +866,8 @@ int main(int argc, char const *argv[])
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/03/13/binarysearchtree/">
                     <div class="card-image">
@@ -746,9 +889,9 @@ typedef struct BSTreeNode
     TYPE key;
    </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -761,6 +904,7 @@ typedef struct BSTreeNode
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -787,21 +931,23 @@ typedef struct BSTreeNode
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/03/07/mi-gong-qiu-jie/">
+                <a href="/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="迷宫求解">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="C++实现观察者模式">
                         
-                        <span class="card-title">迷宫求解</span>
+                        <span class="card-title">C++实现观察者模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">#include &lt;math.h&gt;
-#include &lt;stack&gt;
+                    <div class="summary">#include &lt;assert.h&gt;
+#include &lt;iostream&gt;
+#include &lt;set&gt;
 #include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;time.h&gt</div>
+
+using namespace std;
+</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-07
@@ -810,8 +956,8 @@ typedef struct BSTreeNode
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C++
                                 </a>
                             
                             
@@ -822,15 +968,7 @@ typedef struct BSTreeNode
                 <div class="card-action article-tags">
                     
                     <a href="/tags/C/" target="_blank">
-                        <span class="chip bg-color">C</span>
-                    </a>
-                    
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
-                    <a href="/tags/迷宫求解/" target="_blank">
-                        <span class="chip bg-color">迷宫求解</span>
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
