@@ -415,14 +415,14 @@ typedef struct BSTreeNode
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        729
+                        753
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        4 分
                     </div>
                     
                 
@@ -446,8 +446,8 @@ typedef struct BSTreeNode
 typedef struct BSTreeNode
 {
     TYPE key;
-    struct BSTreeNode *parent; // 父节点
-    struct BSTreeNode *left;   // 做孩子节点
+    struct BSTreeNode *parent; // 父节节点
+    struct BSTreeNode *left;   // 左孩子节点
     struct BSTreeNode *right;  // 右孩子节点
 } Node, *BSTree;
 
@@ -633,6 +633,17 @@ void deleteNode(BSTree *tree, TYPE key)
     }
 }
 
+void destroyTree(BSTree *tree)
+{
+    if (tree == NULL)
+    {
+        return;
+    }
+    destroyTree(&amp;((*tree)-&gt;left));
+    destroyTree(&amp;((*tree)-&gt;right));
+    free((*tree));
+}
+
 //  先序遍历
 void DLR(BSTree tree)
 {
@@ -693,6 +704,8 @@ int main(int argc, char const *argv[])
 
     LDR(tree);
     printf(&quot;\n&quot;);
+
+    destroyTree(&amp;tree);
 
     return 0;
 }
