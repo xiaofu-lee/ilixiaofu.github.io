@@ -4,14 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="C++实现观察者模式, blog">
-    <meta name="description" content="#include &amp;lt;assert.h&amp;gt;
-#include &amp;lt;iostream&amp;gt;
-#include &amp;lt;set&amp;gt;
-#include &amp;lt;stdio.h&amp;gt;
-
-using namespace std;
-">
+    <meta name="keywords" content="链表翻转, blog">
+    <meta name="description" content="206. 反转链表难度：简单题目描述：   反转一个单链表。
+   实例：
+   输入: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL
+   输出: 5-&amp;gt;4-&amp;gt;3-&amp;gt;2-&amp;gt;1-&amp;gt;NUL">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +16,7 @@ using namespace std;
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C++实现观察者模式 | bluce-lee</title>
+    <title>链表翻转 | bluce-lee</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -276,13 +273,13 @@ using namespace std;
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C++实现观察者模式
+                        链表翻转
                     </div>
                 </div>
             </div>
@@ -292,80 +289,10 @@ using namespace std;
 
 
 
-<main class="post-container content">
+<main class="container content">
 
     
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
-<style>
-    #articleContent h1::before,
-    #articleContent h2::before,
-    #articleContent h3::before,
-    #articleContent h4::before,
-    #articleContent h5::before,
-    #articleContent h6::before {
-        display: block;
-        content: " ";
-        height: 100px;
-        margin-top: -100px;
-        visibility: hidden;
-    }
-
-    #articleContent :focus {
-        outline: none;
-    }
-
-    .toc-fixed {
-        position: fixed;
-        top: 64px;
-    }
-
-    .toc-widget {
-        padding-left: 20px;
-    }
-
-    .toc-widget .toc-title {
-        margin: 35px 0 15px 0;
-        padding-left: 17px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    .toc-widget ol {
-        padding: 0;
-        list-style: none;
-    }
-
-    #toc-content ol {
-        padding-left: 10px;
-    }
-
-    #toc-content ol li {
-        padding-left: 10px;
-    }
-
-    #toc-content .toc-link:hover {
-        color: #42b983;
-        font-weight: 700;
-        text-decoration: underline;
-    }
-
-    #toc-content .toc-link::before {
-        background-color: transparent;
-        max-height: 25px;
-    }
-
-    #toc-content .is-active-link {
-        color: #42b983;
-    }
-
-    #toc-content .is-active-link::before {
-        background-color: #42b983;
-    }
-</style>
-<div class="row">
-    <div class="col s12 m12 l9">
-        <!-- 文章内容详情 -->
+    <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
@@ -375,11 +302,23 @@ using namespace std;
                     <div class="article-tag">
                         
                             <a href="/tags/C/" target="_blank">
-                                <span class="chip bg-color">C++</span>
+                                <span class="chip bg-color">C</span>
                             </a>
                         
-                            <a href="/tags/设计模式/" target="_blank">
-                                <span class="chip bg-color">设计模式</span>
+                            <a href="/tags/数据结构/" target="_blank">
+                                <span class="chip bg-color">数据结构</span>
+                            </a>
+                        
+                            <a href="/tags/算法/" target="_blank">
+                                <span class="chip bg-color">算法</span>
+                            </a>
+                        
+                            <a href="/tags/链表/" target="_blank">
+                                <span class="chip bg-color">链表</span>
+                            </a>
+                        
+                            <a href="/tags/链表翻转/" target="_blank">
+                                <span class="chip bg-color">链表翻转</span>
                             </a>
                         
                     </div>
@@ -390,8 +329,8 @@ using namespace std;
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/设计模式/" class="post-category" target="_blank">
-                                设计模式
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                算法
                             </a>
                         
                     </div>
@@ -402,14 +341,14 @@ using namespace std;
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-03-07
+                    2019-03-15
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        276
+                        113
                     </div>
                     
 
@@ -432,131 +371,32 @@ using namespace std;
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code>#include &lt;assert.h&gt;
-#include &lt;iostream&gt;
-#include &lt;set&gt;
-#include &lt;stdio.h&gt;
+                <h2 id="206-反转链表"><a href="#206-反转链表" class="headerlink" title="206. 反转链表"></a>206. 反转链表</h2><h4 id="难度：简单"><a href="#难度：简单" class="headerlink" title="难度：简单"></a>难度：简单</h4><h4 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h4><p>   反转一个单链表。</p>
+<p>   实例：</p>
+<pre><code>   输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL
+   输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL
+</code></pre><p>解题思路：头插法</p>
+<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><pre><code>/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* reverseList(struct ListNode* head) {
+    if(!head) return head;
+    struct ListNode* p = head-&gt;next;
+    struct ListNode* tmp = NULL;
+    struct ListNode* newHead = head;
+    newHead-&gt;next = NULL;
 
-using namespace std;
-
-class Observable;
-
-class Observer
-{
-public:
-  Observer() {}
-  virtual void update(Observable *observable, void *arg) = 0;
-
-private:
-  Observer(const Observer &amp;observer);
-  Observer &amp;operator=(const Observer &amp;observer);
-};
-
-class Observable
-{
-public:
-  virtual ~Observable()
-  {
-    delete instance;
-  }
-  void addObserver(Observer *observer);
-  void notifyObservers();
-  void notifyObservers(void *arg);
-  void setChanged(bool changed);
-  static Observable *getInstance();
-
-private:
-  Observable();
-
-protected:
-  void setUnChanged(bool unChanged);
-
-private:
-  static Observable *instance;
-  bool changed;
-  set&lt;Observer *&gt; observers;
-};
-
-Observable::Observable()
-{
-  this-&gt;changed = false;
-}
-
-void Observable::addObserver(Observer *observer)
-{
-  assert(observer);
-  this-&gt;observers.insert(observer);
-}
-
-void Observable::setChanged(bool changed)
-{
-  this-&gt;changed = changed;
-}
-
-void Observable::setUnChanged(bool unChanged)
-{
-  this-&gt;changed = unChanged;
-}
-
-void Observable::notifyObservers()
-{
-  notifyObservers(NULL);
-}
-
-void Observable::notifyObservers(void *arg)
-{
-  if (!changed)
-    return;
-  this-&gt;setUnChanged(!this-&gt;changed);
-
-  set&lt;Observer *&gt;::iterator it;
-
-  for (it = this-&gt;observers.begin(); it != this-&gt;observers.end(); it++)
-  {
-    Observer *obs = *it;
-    obs-&gt;update(this, arg);
-  }
-}
-Observable *Observable::instance = new Observable();
-Observable *Observable::getInstance()
-{
-  return Observable::instance;
-}
-
-class AObserver : public Observer
-{
-public:
-  void update(Observable *observable, void *arg)
-  {
-    printf(&quot;AObserver::  %d \n&quot;, *((int *)arg));
-  }
-};
-
-class BObserver : public Observer
-{
-public:
-  void update(Observable *observable, void *arg)
-  {
-    printf(&quot;BObserver::  %d \n&quot;, *((int *)arg));
-  }
-};
-
-int main(int argc, char const *argv[])
-{
-  cout &lt;&lt; &quot;-----------------------------\n&quot;;
-  Observable *observable = Observable::getInstance();
-  observable-&gt;setChanged(true);
-
-  AObserver *a = new AObserver();
-  BObserver *b = new BObserver();
-  observable-&gt;addObserver(a);
-  observable-&gt;addObserver(b);
-  int num = 2;
-  int *p = &amp;num;
-  observable-&gt;notifyObservers(p);
-
-  cout &lt;&lt; &quot;-----------------------------\n&quot;;
-  return 0;
+    while(p) {
+        tmp = p-&gt;next;
+        p-&gt;next = newHead;
+        newHead = p;
+        p = tmp;
+    }
+    return newHead;
 }
 </code></pre>
             </div>
@@ -705,7 +545,7 @@ int main(int argc, char const *argv[])
                     </span>
                     <a href="https://ilixiaofu.github.io" class="b-link-green">bluce-lee</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/" class="b-link-green">C++实现观察者模式</a>
+                    <a href="/2019/03/15/lian-biao-fan-zhuan/" class="b-link-green">链表翻转</a>
                 </p>
             </div>
         </div>
@@ -728,87 +568,26 @@ int main(int argc, char const *argv[])
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/03/13/binarysearchtree/">
+                <a href="/2019/03/15/lian-biao-fan-zhuan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="C语言实现二叉搜索树">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="链表翻转">
                         
-                        <span class="card-title">C语言实现二叉搜索树</span>
+                        <span class="card-title">链表翻转</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">二叉搜索树#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-#define TYPE int
-
-typedef struct BSTreeNode
-{
-    TYPE key;
-   </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-13
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/数据结构/" class="post-category" target="_blank">
-                                    数据结构
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/C/" target="_blank">
-                        <span class="chip bg-color">C</span>
-                    </a>
-                    
-                    <a href="/tags/数据结构/" target="_blank">
-                        <span class="chip bg-color">数据结构</span>
-                    </a>
-                    
-                    <a href="/tags/二叉搜索树/" target="_blank">
-                        <span class="chip bg-color">二叉搜索树</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/03/07/mi-gong-qiu-jie/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="迷宫求解">
-                        
-                        <span class="card-title">迷宫求解</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary">#include &lt;math.h&gt;
-#include &lt;stack&gt;
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;time.h&gt</div>
+                    <div class="summary">206. 反转链表难度：简单题目描述：   反转一个单链表。
+   实例：
+   输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL
+   输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NUL</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-07
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-15
                             </span>
                         <span class="publish-author">
                             
@@ -822,6 +601,7 @@ typedef struct BSTreeNode
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -829,12 +609,77 @@ typedef struct BSTreeNode
                         <span class="chip bg-color">C</span>
                     </a>
                     
+                    <a href="/tags/数据结构/" target="_blank">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
                     <a href="/tags/算法/" target="_blank">
                         <span class="chip bg-color">算法</span>
                     </a>
                     
-                    <a href="/tags/迷宫求解/" target="_blank">
-                        <span class="chip bg-color">迷宫求解</span>
+                    <a href="/tags/链表/" target="_blank">
+                        <span class="chip bg-color">链表</span>
+                    </a>
+                    
+                    <a href="/tags/链表翻转/" target="_blank">
+                        <span class="chip bg-color">链表翻转</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/03/13/carrayoutofboundary/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="C语言数组越界返回地址覆盖反汇编分析">
+                        
+                        <span class="card-title">C语言数组越界返回地址覆盖反汇编分析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">C语言数组越界返回地址覆盖反汇编分析#include &lt;stdio.h&gt;
+
+void helloworld()
+{
+    printf(&quot;hello world\n&quot;);
+}
+
+// 返回地址覆盖
+void</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C语言/" class="post-category" target="_blank">
+                                    C语言
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C语言/" target="_blank">
+                        <span class="chip bg-color">C语言</span>
+                    </a>
+                    
+                    <a href="/tags/反汇编/" target="_blank">
+                        <span class="chip bg-color">反汇编</span>
                     </a>
                     
                 </div>
@@ -884,53 +729,6 @@ typedef struct BSTreeNode
     });
 </script>
 
-    </div>
-    <div class="col l3 hide-on-med-and-down">
-        <div class="toc-widget">
-            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
-            <div id="toc-content"></div>
-        </div>
-    </div>
-</div>
-
-<script src="/libs/tocbot/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '#articleContent',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            // headingsOffset: -205,
-            headingSelector: 'h2, h3, h4'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-    });
-</script>
     
 
 </main>
