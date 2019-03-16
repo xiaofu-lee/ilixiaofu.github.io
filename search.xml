@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>逻辑门电路实现加减乘除运算器</title>
+      <link href="/2019/03/16/yi-huo-yu-shi-xian-jia-jian-cheng-chu/"/>
+      <url>/2019/03/16/yi-huo-yu-shi-xian-jia-jian-cheng-chu/</url>
+      
+        <content type="html"><![CDATA[<h2 id="逻辑门电路实现加减乘除运算器"><a href="#逻辑门电路实现加减乘除运算器" class="headerlink" title="逻辑门电路实现加减乘除运算器"></a>逻辑门电路实现加减乘除运算器</h2><pre><code>#include &lt;stdio.h&gt;int add(int arg1, int arg2);int sub(int arg1, int arg2);int mul(int arg1, int arg2);int div(int arg1, int arg2);/** * 加法器 * desc:使用亦或实现加法，使用按位与实现进位检查 */ int add(int arg1, int arg2){    int x = arg1 ^ arg2;    int carry = arg1 &amp; arg2;    while(carry) {        carry &lt;&lt;= 1;        arg1 = x;        arg2 = carry;        x = arg1 ^ arg2;        carry = arg1 &amp; arg2;    }    return x;}/** * 减法器 * desc:减去一个数等于加上一个负数 */ int sub(int arg1, int arg2){    return add(arg1, mul(arg2, 0xFFFFFFFF));}/** * 乘法器 * desc:x * y 可表示为 x 个 y 相加 */ int mul(int arg1, int arg2){    int sum = arg2;    while(arg1 &gt; 1) {        sum = add(sum, arg2);        arg1 = sub(arg1, 1);    }    return sum;}/** * 除法器 * desc:x - y 可表示为x减去几个y=0 */ int div(int arg1, int arg2){    int sum = 0;    while(arg1) {        arg1 = sub(arg1, arg2);        sum = add(sum, 1);    }    return sum;}int main(int argc, char const *argv[]){    int res = add(100, -50);    printf(&quot;res = %d\n&quot;, res);    res = sub(100, 10);    printf(&quot;res = %d\n&quot;, res);    res = mul(3, 9);    printf(&quot;res = %d\n&quot;, res);    res = div(9, 3);    printf(&quot;res = %d\n&quot;, res);    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 逻辑门电路实现加减乘除运算器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>链表翻转</title>
       <link href="/2019/03/15/lian-biao-fan-zhuan/"/>
       <url>/2019/03/15/lian-biao-fan-zhuan/</url>

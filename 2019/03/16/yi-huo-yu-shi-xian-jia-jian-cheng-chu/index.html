@@ -4,16 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="表达式求值, blog">
-    <meta name="description" content="#include &amp;lt;stack&amp;gt;
-#include &amp;lt;stdio.h&amp;gt;
+    <meta name="keywords" content="逻辑门电路实现加减乘除运算器, blog">
+    <meta name="description" content="逻辑门电路实现加减乘除运算器#include &amp;lt;stdio.h&amp;gt;
 
-#define MAX 0x7FFFFFFF
-#define MIN 0xFFFFFFFF
-
-using namespace std;
-
-//">
+int add(int arg1, int arg2);
+int sub(int arg1, int arg2);
+int mul(int arg1, int ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +17,7 @@ using namespace std;
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>表达式求值 | bluce-lee</title>
+    <title>逻辑门电路实现加减乘除运算器 | bluce-lee</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -278,13 +274,13 @@ using namespace std;
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        表达式求值
+                        逻辑门电路实现加减乘除运算器
                     </div>
                 </div>
             </div>
@@ -314,8 +310,8 @@ using namespace std;
                                 <span class="chip bg-color">算法</span>
                             </a>
                         
-                            <a href="/tags/表达式求值/" target="_blank">
-                                <span class="chip bg-color">表达式求值</span>
+                            <a href="/tags/逻辑门电路实现加减乘除运算器/" target="_blank">
+                                <span class="chip bg-color">逻辑门电路实现加减乘除运算器</span>
                             </a>
                         
                     </div>
@@ -338,21 +334,21 @@ using namespace std;
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-03-07
+                    2019-03-16
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        655
+                        258
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        1 分
                     </div>
                     
                 
@@ -368,152 +364,81 @@ using namespace std;
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code>#include &lt;stack&gt;
-#include &lt;stdio.h&gt;
+                <h2 id="逻辑门电路实现加减乘除运算器"><a href="#逻辑门电路实现加减乘除运算器" class="headerlink" title="逻辑门电路实现加减乘除运算器"></a>逻辑门电路实现加减乘除运算器</h2><pre><code>#include &lt;stdio.h&gt;
 
-#define MAX 0x7FFFFFFF
-#define MIN 0xFFFFFFFF
+int add(int arg1, int arg2);
+int sub(int arg1, int arg2);
+int mul(int arg1, int arg2);
+int div(int arg1, int arg2);
 
-using namespace std;
-
-// 操作数栈
-stack&lt;int&gt; sOPND;
-// 操作符栈
-stack&lt;char&gt; sOPTR;
-
-// 操作符集合表
-char OPTR[] = {&#39;+&#39;, &#39;-&#39;, &#39;*&#39;, &#39;/&#39;, &#39;(&#39;, &#39;)&#39;, &#39;#&#39;, &#39;\0&#39;};
-
-// 操作符优先级表
-char PrecedeR[][7] = {
-    //+    -    *    /    (    )    #
-    {&#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;},  // +
-    {&#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;},  // -
-    {&#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&lt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;},  // *
-    {&#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&lt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;},  // /
-    {&#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;=&#39;, &#39; &#39;},  // (
-    {&#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39;&gt;&#39;, &#39; &#39;, &#39;&gt;&#39;, &#39;&gt;&#39;},  // )
-    {&#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39;&lt;&#39;, &#39; &#39;, &#39;=&#39;}}; // #
-
-// 判断是否在操作符集合 返回所在集合索引
-int IsInOP(char op)
+/**
+ * 加法器
+ * desc:使用亦或实现加法，使用按位与实现进位检查
+ */ 
+int add(int arg1, int arg2)
 {
-    int i;
-    for (i = 0; OPTR[i] != &#39;\0&#39;; ++i)
-    {
-        if (op == OPTR[i])
-        {
-            // 返回索引
-            return i;
-        }
+    int x = arg1 ^ arg2;
+    int carry = arg1 &amp; arg2;
+    while(carry) {
+        carry &lt;&lt;= 1;
+        arg1 = x;
+        arg2 = carry;
+        x = arg1 ^ arg2;
+        carry = arg1 &amp; arg2;
     }
-    return MIN;
+    return x;
 }
 
-// 判断两个操作符的优先级
-char Precede(char ch1, char ch2)
+/**
+ * 减法器
+ * desc:减去一个数等于加上一个负数
+ */ 
+int sub(int arg1, int arg2)
 {
-    if (IsInOP(ch1) != -1 &amp;&amp; IsInOP(ch2) != -1)
-    {
-        return PrecedeR[IsInOP(ch1)][IsInOP(ch2)];
-    }
-    return &#39; &#39;;
+    return add(arg1, mul(arg2, 0xFFFFFFFF));
 }
 
-// 判断是否是操作数
-int IsDigit(char ch)
+/**
+ * 乘法器
+ * desc:x * y 可表示为 x 个 y 相加
+ */ 
+int mul(int arg1, int arg2)
 {
-    if (ch &gt;= &#39;0&#39; &amp;&amp; ch &lt;= &#39;9&#39;)
-    {
-        return 1;
+    int sum = arg2;
+    while(arg1 &gt; 1) {
+        sum = add(sum, arg2);
+        arg1 = sub(arg1, 1);
     }
-    return 0;
+    return sum;
 }
 
-// 执行运算操作
-int Operate(char theta, int a, int b)
+/**
+ * 除法器
+ * desc:x - y 可表示为x减去几个y=0
+ */ 
+int div(int arg1, int arg2)
 {
-    switch (theta)
-    {
-    case &#39;+&#39;:
-        return a + b;
-    case &#39;-&#39;:
-        return a - b;
-    case &#39;*&#39;:
-        return a * b;
-    case &#39;/&#39;:
-        return a / b;
-    default:
-        return MAX;
+    int sum = 0;
+    while(arg1) {
+        arg1 = sub(arg1, arg2);
+        sum = add(sum, 1);
     }
-}
-
-int calculator(const char *str)
-{
-    int position = 0, num = 0;
-    sOPTR.push(&#39;#&#39;);
-    while (str[position] != &#39;#&#39; || sOPTR.top() != &#39;#&#39;)
-    {
-        char ch = str[position];
-        if (IsDigit(ch))
-        {
-            num = num * 10 + (ch - &#39;0&#39;);
-            position++;
-        }
-        else
-        {
-            if (num != 0)
-            {
-                // 是操作数则进操作数栈
-                sOPND.push(num);
-                // 清零
-                num = 0;
-            }
-            switch (Precede(sOPTR.top(), ch))
-            {
-            case &#39;&lt;&#39;:
-                // 期待符优先级高于操作符栈顶元素则期待符入栈，读头指向下一个期待符
-                sOPTR.push(ch);
-                position++;
-                break;
-            case &#39;&gt;&#39;:
-            {
-                // 期待符优先级低于操作符栈顶元素则操作符栈顶元素出栈
-                // 操作数栈弹出两个操作数 进行相应的算数符号运算并将运算结果压入操作数栈
-                int b = sOPND.top();
-                sOPND.pop();
-                int a = sOPND.top();
-                sOPND.pop();
-                sOPND.push(Operate(sOPTR.top(), a, b));
-                sOPTR.pop();
-                break;
-            }
-            case &#39;=&#39;:
-                // 期待符优先级等于操作符栈顶元素则操作符栈顶元素出栈，读头指向下一个期待符
-                sOPTR.pop();
-                position++;
-                break;
-            }
-        }
-    }
-    if (!sOPTR.empty())
-    {
-        return sOPND.top();
-    }
-    return MAX;
+    return sum;
 }
 
 int main(int argc, char const *argv[])
 {
-    char str[80];
-    while (1)
-    {
-        printf(&quot;请输入算数表达式\n&quot;);
-        gets(str);
-        sprintf(str, &quot;%s%c&quot;, str, &#39;#&#39;);
-        int result = calculator(str);
-        printf(&quot;计算结果:%d\n&quot;, result);
-    }
+    int res = add(100, -50);
+    printf(&quot;res = %d\n&quot;, res);
+
+    res = sub(100, 10);
+    printf(&quot;res = %d\n&quot;, res);
+
+    res = mul(3, 9);
+    printf(&quot;res = %d\n&quot;, res);
+
+    res = div(9, 3);
+    printf(&quot;res = %d\n&quot;, res);
     return 0;
 }
 
@@ -664,7 +589,7 @@ int main(int argc, char const *argv[])
                     </span>
                     <a href="https://ilixiaofu.github.io" class="b-link-green">bluce-lee</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/07/biao-da-shi-qiu-zhi/" class="b-link-green">表达式求值</a>
+                    <a href="/2019/03/16/yi-huo-yu-shi-xian-jia-jian-cheng-chu/" class="b-link-green">逻辑门电路实现加减乘除运算器</a>
                 </p>
             </div>
         </div>
@@ -687,27 +612,85 @@ int main(int argc, char const *argv[])
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/03/07/mi-gong-qiu-jie/">
+                <a href="/2019/03/16/yi-huo-yu-shi-xian-jia-jian-cheng-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="迷宫求解">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="逻辑门电路实现加减乘除运算器">
                         
-                        <span class="card-title">迷宫求解</span>
+                        <span class="card-title">逻辑门电路实现加减乘除运算器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">#include &lt;math.h&gt;
-#include &lt;stack&gt;
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;time.h&gt</div>
+                    <div class="summary">逻辑门电路实现加减乘除运算器#include &lt;stdio.h&gt;
+
+int add(int arg1, int arg2);
+int sub(int arg1, int arg2);
+int mul(int arg1, int </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-07
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                    算法
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C</span>
+                    </a>
+                    
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                    <a href="/tags/逻辑门电路实现加减乘除运算器/" target="_blank">
+                        <span class="chip bg-color">逻辑门电路实现加减乘除运算器</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/03/15/lian-biao-fan-zhuan/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="链表翻转">
+                        
+                        <span class="card-title">链表翻转</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">206. 反转链表难度：简单题目描述：   反转一个单链表。
+   实例：
+   输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL
+   输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NUL</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -727,60 +710,20 @@ int main(int argc, char const *argv[])
                         <span class="chip bg-color">C</span>
                     </a>
                     
+                    <a href="/tags/数据结构/" target="_blank">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
                     <a href="/tags/算法/" target="_blank">
                         <span class="chip bg-color">算法</span>
                     </a>
                     
-                    <a href="/tags/迷宫求解/" target="_blank">
-                        <span class="chip bg-color">迷宫求解</span>
+                    <a href="/tags/链表/" target="_blank">
+                        <span class="chip bg-color">链表</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/03/07/hexo-da-jian-zhi-nan/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Hexo搭建指南">
-                        
-                        <span class="card-title">Hexo搭建指南</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary">
-安装Git  yum -y install git
-  git config --global user.name &quot;ilixiaofu&quot;// github用户名
-  git config --global user.</div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-07
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Hexo/" class="post-category" target="_blank">
-                                    Hexo
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Hexo/" target="_blank">
-                        <span class="chip bg-color">Hexo</span>
+                    <a href="/tags/链表翻转/" target="_blank">
+                        <span class="chip bg-color">链表翻转</span>
                     </a>
                     
                 </div>
