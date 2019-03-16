@@ -4,16 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言实现二叉搜索树, blog">
-    <meta name="description" content="二叉搜索树#include &amp;lt;stdio.h&amp;gt;
-#include &amp;lt;stdlib.h&amp;gt;
-
-#define TYPE int
-
-typedef struct BSTreeNode
+    <meta name="keywords" content="CPP 手动访问虚函数表, blog">
+    <meta name="description" content="CPP 手动访问虚函数表class Object
 {
-    TYPE key;
-   ">
+public:
+    Object(){}
+    virtual void foo1()
+    {
+        printf(&amp;quot;foo1--&amp;gt;%d\n&amp;quot">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +19,7 @@ typedef struct BSTreeNode
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C语言实现二叉搜索树 | bluce-lee</title>
+    <title>CPP 手动访问虚函数表 | bluce-lee</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -278,13 +276,13 @@ typedef struct BSTreeNode
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C语言实现二叉搜索树
+                        CPP 手动访问虚函数表
                     </div>
                 </div>
             </div>
@@ -294,80 +292,10 @@ typedef struct BSTreeNode
 
 
 
-<main class="post-container content">
+<main class="container content">
 
     
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
-<style>
-    #articleContent h1::before,
-    #articleContent h2::before,
-    #articleContent h3::before,
-    #articleContent h4::before,
-    #articleContent h5::before,
-    #articleContent h6::before {
-        display: block;
-        content: " ";
-        height: 100px;
-        margin-top: -100px;
-        visibility: hidden;
-    }
-
-    #articleContent :focus {
-        outline: none;
-    }
-
-    .toc-fixed {
-        position: fixed;
-        top: 64px;
-    }
-
-    .toc-widget {
-        padding-left: 20px;
-    }
-
-    .toc-widget .toc-title {
-        margin: 35px 0 15px 0;
-        padding-left: 17px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    .toc-widget ol {
-        padding: 0;
-        list-style: none;
-    }
-
-    #toc-content ol {
-        padding-left: 10px;
-    }
-
-    #toc-content ol li {
-        padding-left: 10px;
-    }
-
-    #toc-content .toc-link:hover {
-        color: #42b983;
-        font-weight: 700;
-        text-decoration: underline;
-    }
-
-    #toc-content .toc-link::before {
-        background-color: transparent;
-        max-height: 25px;
-    }
-
-    #toc-content .is-active-link {
-        color: #42b983;
-    }
-
-    #toc-content .is-active-link::before {
-        background-color: #42b983;
-    }
-</style>
-<div class="row">
-    <div class="col s12 m12 l9">
-        <!-- 文章内容详情 -->
+    <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
@@ -377,15 +305,15 @@ typedef struct BSTreeNode
                     <div class="article-tag">
                         
                             <a href="/tags/C/" target="_blank">
-                                <span class="chip bg-color">C</span>
+                                <span class="chip bg-color">C++</span>
                             </a>
                         
-                            <a href="/tags/数据结构/" target="_blank">
-                                <span class="chip bg-color">数据结构</span>
+                            <a href="/tags/函数指针/" target="_blank">
+                                <span class="chip bg-color">函数指针</span>
                             </a>
                         
-                            <a href="/tags/二叉搜索树/" target="_blank">
-                                <span class="chip bg-color">二叉搜索树</span>
+                            <a href="/tags/虚函数/" target="_blank">
+                                <span class="chip bg-color">虚函数</span>
                             </a>
                         
                     </div>
@@ -396,8 +324,8 @@ typedef struct BSTreeNode
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/数据结构/" class="post-category" target="_blank">
-                                数据结构
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                C++
                             </a>
                         
                     </div>
@@ -408,21 +336,21 @@ typedef struct BSTreeNode
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-03-13
+                    2019-03-17
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        753
+                        100
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        1 分
                     </div>
                     
                 
@@ -438,275 +366,40 @@ typedef struct BSTreeNode
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h1><pre><code>#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-#define TYPE int
-
-typedef struct BSTreeNode
+                <h2 id="CPP-手动访问虚函数表"><a href="#CPP-手动访问虚函数表" class="headerlink" title="CPP 手动访问虚函数表"></a>CPP 手动访问虚函数表</h2><pre><code>class Object
 {
-    TYPE key;
-    struct BSTreeNode *parent; // 父节节点
-    struct BSTreeNode *left;   // 左孩子节点
-    struct BSTreeNode *right;  // 右孩子节点
-} Node, *BSTree;
+public:
+    Object(){}
+    virtual void foo1()
+    {
+        printf(&quot;foo1--&gt;%d\n&quot;,0);
+    }
+    virtual void foo2()
+    {
+        printf(&quot;foo2--&gt;%d\n&quot;,1);
+    }
+};
 
-// 创建节点
-Node *createNode(TYPE key)
+int main(int argc, char* argv[])
 {
-    Node *node = (Node *)malloc(sizeof(Node));
-    node-&gt;key = key;
-    node-&gt;parent = NULL;
-    node-&gt;left = node-&gt;right = NULL;
-    return node;
-}
+    typedef void (*fun)();
 
-// 插入节点
-void insertNode(BSTree *tree, Node *node)
-{
-    BSTree p = *tree;
-    Node *parentNode = NULL;
-    // 查找插入节点
-    while (p)
-    {
-        parentNode = p;
-        if (node-&gt;key &lt; p-&gt;key)
-        {
-            p = p-&gt;left;
-        }
-        else
-        {
-            p = p-&gt;right;
-        }
-    }
-    // 没有找到即根节点为空
-    if (parentNode == NULL)
-    {
-        *tree = node;
-        return;
-    }
-    if (node-&gt;key &lt; parentNode-&gt;key)
-    {
-        // 插入左孩子
-        parentNode-&gt;left = node;
-    }
-    else
-    {
-        // 插入右孩子
-        parentNode-&gt;right = node;
-    }
-    node-&gt;parent = parentNode;
-}
+    Object object;
+    fun foo1 = (fun)(*((int*)(*(int*)(&amp;object)) + 0));
+    foo1();
+    fun foo2 = (fun)(*((int*)(*(int*)(&amp;object)) + 1));
+    foo2();
 
-// 查找节点
-Node *searchNode(BSTree tree, TYPE key)
-{
-    BSTree p = tree;
-    while (p &amp;&amp; p-&gt;key != key)
-    {
-        if (key &lt; p-&gt;key)
-        {
-            p = p-&gt;left;
-        }
-        else
-        {
-            p = p-&gt;right;
-        }
-    }
-    return p;
-}
+    Object* pObject = new Object();
+    fun foo3 = (fun)(*((int*)(*((int*)pObject)) + 0));
+    foo3();
+    fun foo4 = (fun)(*((int*)(*((int*)pObject)) + 1));
+    foo4();
 
-// 查找最小节点
-Node *findMinNode(BSTree tree)
-{
-    BSTree p = tree;
-    while (p-&gt;left != NULL)
-    {
-        p = p-&gt;left;
-    }
-    return p;
-}
-
-// 查找最大节点
-Node *findMaxNode(BSTree tree)
-{
-    BSTree p = tree;
-    while (p-&gt;right != NULL)
-    {
-        p = p-&gt;right;
-    }
-    return p;
-}
-
-// 删除节点
-void deleteNode(BSTree *tree, TYPE key)
-{
-    BSTree p = *tree;
-    Node *node = searchNode(p, key);
-    // 节点不存在
-    if (!node)
-    {
-        return;
-    }
-    // 待删除节点左右孩子为空
-    if (!(node-&gt;left) &amp;&amp; !(node-&gt;right))
-    {
-        // 是父节点
-        if (node == *tree)
-        {
-            tree = NULL;
-            free(p);
-            return;
-        }
-        if (node == node-&gt;parent-&gt;left)
-        {
-            node-&gt;parent-&gt;left = NULL;
-        }
-        else
-        {
-            node-&gt;parent-&gt;right = NULL;
-        }
-        free(node);
-    }
-    // 左右孩子节点均不为空
-    else if (node-&gt;left &amp;&amp; node-&gt;right)
-    {
-        // 查找待删节点右子树最小节点
-        Node *minNode = findMinNode(node-&gt;right);
-        // 最小节点在父节点的左孩子
-        if (minNode == minNode-&gt;parent-&gt;left)
-        {
-            // 清空父子节点的右子树
-            minNode-&gt;parent-&gt;left = NULL;
-        }
-        else
-        {
-            // 清空父子节点的左子树
-            minNode-&gt;parent-&gt;right = NULL;
-        }
-        // 继承待删除节点的父节点，及左右子树
-        minNode-&gt;parent = node-&gt;parent;
-        minNode-&gt;left = node-&gt;left;
-        minNode-&gt;right = node-&gt;right;
-        // 是父节点
-        if (!(node-&gt;parent))
-        {
-            *tree = minNode;
-        }
-        else
-        {
-            if (node == node-&gt;parent-&gt;left)
-            {
-                node-&gt;parent-&gt;left = minNode;
-            }
-            else
-            {
-                node-&gt;parent-&gt;right = minNode;
-            }
-        }
-        free(node);
-    }
-    else
-    {
-        // 待删除节点左右子树有一个为空
-        // 保存孩子节点
-        Node *childNode = (node-&gt;left) ? (node-&gt;left) : (node-&gt;right);
-        // 待删节点是根节点
-        if (!(node-&gt;parent))
-        {
-            childNode-&gt;parent = NULL;
-            *tree = childNode;
-        }
-        else
-        {
-            childNode-&gt;parent = node-&gt;parent;
-            if (node == node-&gt;parent-&gt;left)
-            {
-                node-&gt;parent-&gt;left = childNode;
-            }
-            else
-            {
-                node-&gt;parent-&gt;right = childNode;
-            }
-        }
-        free(node);
-    }
-}
-
-void destroyTree(BSTree *tree)
-{
-    if (tree == NULL)
-    {
-        return;
-    }
-    destroyTree(&amp;((*tree)-&gt;left));
-    destroyTree(&amp;((*tree)-&gt;right));
-    free((*tree));
-}
-
-//  先序遍历
-void DLR(BSTree tree)
-{
-    if (tree == NULL)
-    {
-        return;
-    }
-    printf(&quot;%d  &quot;, tree-&gt;key);
-    DLR(tree-&gt;left);
-    DLR(tree-&gt;right);
-}
-
-// 中序遍历
-void LDR(BSTree tree)
-{
-    if (tree == NULL)
-    {
-        return;
-    }
-    LDR(tree-&gt;left);
-    printf(&quot;%d  &quot;, tree-&gt;key);
-    LDR(tree-&gt;right);
-}
-
-// 后序遍历
-void LRD(BSTree tree)
-{
-    if (tree == NULL)
-    {
-        return;
-    }
-    LRD(tree-&gt;left);
-    LRD(tree-&gt;right);
-    printf(&quot;%d  &quot;, tree-&gt;key);
-}
-
-int main(int argc, char const *argv[])
-{
-    BSTree tree = NULL;
-    TYPE value[8] = {10, 20, 30, 40, 5, 25, 15, 5};
-    Node *node = NULL;
-    for (int i = 0; i &lt; 8; i++)
-    {
-        node = createNode(value[i]);
-        insertNode(&amp;tree, node);
-    }
-    DLR(tree);
-    printf(&quot;\n&quot;);
-    LRD(tree);
-    printf(&quot;\n&quot;);
-    LDR(tree);
-    printf(&quot;\n&quot;);
-
-    deleteNode(&amp;tree, 30);
-
-    node = createNode(35);
-    insertNode(&amp;tree, node);
-
-    LDR(tree);
-    printf(&quot;\n&quot;);
-
-    destroyTree(&amp;tree);
-
+    fun foo5 = (fun)(*(*((int **)pObject) + 0));
+    foo5();
+    fun foo6 = (fun)(*(*((int **)pObject) + 1));
+    foo6();
     return 0;
 }
 </code></pre>
@@ -856,7 +549,7 @@ int main(int argc, char const *argv[])
                     </span>
                     <a href="https://ilixiaofu.github.io" class="b-link-green">bluce-lee</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/13/binarysearchtree/" class="b-link-green">C语言实现二叉搜索树</a>
+                    <a href="/2019/03/17/cppvirtual/" class="b-link-green">CPP 手动访问虚函数表</a>
                 </p>
             </div>
         </div>
@@ -879,52 +572,56 @@ int main(int argc, char const *argv[])
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/03/13/carrayoutofboundary/">
+                <a href="/2019/03/17/cppvirtual/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="C语言数组越界返回地址覆盖反汇编分析">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="CPP 手动访问虚函数表">
                         
-                        <span class="card-title">C语言数组越界返回地址覆盖反汇编分析</span>
+                        <span class="card-title">CPP 手动访问虚函数表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">C语言数组越界返回地址覆盖反汇编分析#include &lt;stdio.h&gt;
-
-void helloworld()
+                    <div class="summary">CPP 手动访问虚函数表class Object
 {
-    printf(&quot;hello world\n&quot;);
-}
-
-// 返回地址覆盖
-void</div>
+public:
+    Object(){}
+    virtual void foo1()
+    {
+        printf(&quot;foo1--&gt;%d\n&quot</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/C语言/" class="post-category" target="_blank">
-                                    C语言
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C++
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C语言/" target="_blank">
-                        <span class="chip bg-color">C语言</span>
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
-                    <a href="/tags/反汇编/" target="_blank">
-                        <span class="chip bg-color">反汇编</span>
+                    <a href="/tags/函数指针/" target="_blank">
+                        <span class="chip bg-color">函数指针</span>
+                    </a>
+                    
+                    <a href="/tags/虚函数/" target="_blank">
+                        <span class="chip bg-color">虚函数</span>
                     </a>
                     
                 </div>
@@ -938,33 +635,31 @@ void</div>
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/">
+                <a href="/2019/03/16/yi-huo-yu-shi-xian-jia-jian-cheng-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="C++实现观察者模式">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="逻辑门电路实现加减乘除运算器">
                         
-                        <span class="card-title">C++实现观察者模式</span>
+                        <span class="card-title">逻辑门电路实现加减乘除运算器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">#include &lt;assert.h&gt;
-#include &lt;iostream&gt;
-#include &lt;set&gt;
-#include &lt;stdio.h&gt;
+                    <div class="summary">逻辑门电路实现加减乘除运算器#include &lt;stdio.h&gt;
 
-using namespace std;
-</div>
+int add(int arg1, int arg2);
+int sub(int arg1, int arg2);
+int mul(int arg1, int </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-07
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-16
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/设计模式/" class="post-category" target="_blank">
-                                    设计模式
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                    算法
                                 </a>
                             
                             
@@ -975,11 +670,15 @@ using namespace std;
                 <div class="card-action article-tags">
                     
                     <a href="/tags/C/" target="_blank">
-                        <span class="chip bg-color">C++</span>
+                        <span class="chip bg-color">C</span>
                     </a>
                     
-                    <a href="/tags/设计模式/" target="_blank">
-                        <span class="chip bg-color">设计模式</span>
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                    <a href="/tags/逻辑门电路实现加减乘除运算器/" target="_blank">
+                        <span class="chip bg-color">逻辑门电路实现加减乘除运算器</span>
                     </a>
                     
                 </div>
@@ -1029,53 +728,6 @@ using namespace std;
     });
 </script>
 
-    </div>
-    <div class="col l3 hide-on-med-and-down">
-        <div class="toc-widget">
-            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
-            <div id="toc-content"></div>
-        </div>
-    </div>
-</div>
-
-<script src="/libs/tocbot/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '#articleContent',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            // headingsOffset: -205,
-            headingSelector: 'h2, h3, h4'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-    });
-</script>
     
 
 </main>

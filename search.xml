@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>CPP 手动访问虚函数表</title>
+      <link href="/2019/03/17/cppvirtual/"/>
+      <url>/2019/03/17/cppvirtual/</url>
+      
+        <content type="html"><![CDATA[<h2 id="CPP-手动访问虚函数表"><a href="#CPP-手动访问虚函数表" class="headerlink" title="CPP 手动访问虚函数表"></a>CPP 手动访问虚函数表</h2><pre><code>class Object{public:    Object(){}    virtual void foo1()    {        printf(&quot;foo1--&gt;%d\n&quot;,0);    }    virtual void foo2()    {        printf(&quot;foo2--&gt;%d\n&quot;,1);    }};int main(int argc, char* argv[]){    typedef void (*fun)();    Object object;    fun foo1 = (fun)(*((int*)(*(int*)(&amp;object)) + 0));    foo1();    fun foo2 = (fun)(*((int*)(*(int*)(&amp;object)) + 1));    foo2();    Object* pObject = new Object();    fun foo3 = (fun)(*((int*)(*((int*)pObject)) + 0));    foo3();    fun foo4 = (fun)(*((int*)(*((int*)pObject)) + 1));    foo4();    fun foo5 = (fun)(*(*((int **)pObject) + 0));    foo5();    fun foo6 = (fun)(*(*((int **)pObject) + 1));    foo6();    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 函数指针 </tag>
+            
+            <tag> 虚函数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>逻辑门电路实现加减乘除运算器</title>
       <link href="/2019/03/16/yi-huo-yu-shi-xian-jia-jian-cheng-chu/"/>
       <url>/2019/03/16/yi-huo-yu-shi-xian-jia-jian-cheng-chu/</url>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ilixiaofu.github.io/"/>
-  <updated>2019-03-16T15:23:25.311Z</updated>
+  <updated>2019-03-16T17:34:08.504Z</updated>
   <id>https://ilixiaofu.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CPP 手动访问虚函数表</title>
+    <link href="https://ilixiaofu.github.io/2019/03/17/cppvirtual/"/>
+    <id>https://ilixiaofu.github.io/2019/03/17/cppvirtual/</id>
+    <published>2019-03-16T17:30:04.000Z</published>
+    <updated>2019-03-16T17:34:08.504Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;CPP-手动访问虚函数表&quot;&gt;&lt;a href=&quot;#CPP-手动访问虚函数表&quot; class=&quot;headerlink&quot; title=&quot;CPP 手动访问虚函数表&quot;&gt;&lt;/a&gt;CPP 手动访问虚函数表&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class
+        
+      
+    
+    </summary>
+    
+      <category term="C++" scheme="https://ilixiaofu.github.io/categories/C/"/>
+    
+    
+      <category term="C++" scheme="https://ilixiaofu.github.io/tags/C/"/>
+    
+      <category term="函数指针" scheme="https://ilixiaofu.github.io/tags/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/"/>
+    
+      <category term="虚函数" scheme="https://ilixiaofu.github.io/tags/%E8%99%9A%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>逻辑门电路实现加减乘除运算器</title>
