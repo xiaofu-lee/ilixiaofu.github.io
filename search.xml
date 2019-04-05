@@ -4,11 +4,38 @@
   
     
     <entry>
-      <title>CPP 手动访问虚函数表</title>
+      <title>计算机内存中浮点数的表示规则</title>
+      <link href="/2019/04/05/fu-dian-shu/"/>
+      <url>/2019/04/05/fu-dian-shu/</url>
+      
+        <content type="html"><![CDATA[<h1 id="计算机内存中浮点数的表示"><a href="#计算机内存中浮点数的表示" class="headerlink" title="计算机内存中浮点数的表示"></a>计算机内存中浮点数的表示</h1><p><strong>float和double在存储方式上都遵从IEEE的规范</strong></p><h2 id="float类型表示方法"><a href="#float类型表示方法" class="headerlink" title="float类型表示方法"></a>float类型表示方法</h2><p><strong>float的内存存储方式如下图所示：</strong><br><img src="imgres/float.png"><br></p><ol><li><strong>第31位表示符号位</strong><br></li><li><strong>第30位表示移位方向 1左移 0右移</strong><br></li><li><strong>第23-29位表示指数  左移为正，右移为负</strong><br></li><li><strong>第0-22位表示尾数即小数点右部分</strong><br></li></ol><ul><li><p><strong>以8.25为例：</strong></p><p>  step 1：将8.25转为二进制 1000.01<br><br>  step 2：将1000.01使用科学计数法表示，由于小数点左边不为零故将小数点左移3位表示为 1.00001 * 2^3<br><br>  step 3：字节填充<br><br>  符号位：由于8.25为正数所以符号位为0<br><br>  指数部分：由于左移所以移位方向为1<br><br>  剩下7个比特位用指数-1填充，3-1 = 2 补码表示即 0000 0010 用剔除符号位的000 0010填充<br><br>  尾数部分：用小数点右部的00001填充0-22位的高位部分，剩余位用零填充<br><br>  最终填充结果为：0100 0001 0000 0100 0000 0000 0000 0000 <br><br>  十六进制表示为：0x41040000</p><p>  结论证明如下图：<br>  <img src="imgres/pfloatlab1.png"></p></li></ul><ul><li><p><strong>以0.25为例：</strong></p><p>  step 1：将0.25转为二进制 0.01<br><br>  step 2：将0.01使用科学计数法表示，由于小数点左边为零故将小数点右移2位表示为 1.0* 2^-2<br><br>  step 3：字节填充<br><br>  符号位：由于0.25为正数所以符号位为0<br><br>  指数部分：由于右移所以移位方向为0<br><br>  剩下7个比特位用指数-1填充，-2-1 = -3 补码表示即 1111 1101 用剔除符号位的111 1101填充<br><br>  尾数部分：用小数点右部的0填充0-22位的高位部分，剩余位用零填充<br><br>  最终填充结果为：0011 1110 1000 0000 0000 0000 0000 0000 <br><br>  十六进制表示为：0x3E800000</p><p>  结论证明如下图：<br>  <img src="imgres/pfloatlab2.png"></p></li></ul><h2 id="double类型表示方法"><a href="#double类型表示方法" class="headerlink" title="double类型表示方法"></a>double类型表示方法</h2><p><strong>double的内存存储方式如下图所示：</strong><br><img src="imgres/double.png"> <br><br><strong>填充过程同float</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机组成原理 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机组成原理 </tag>
+            
+            <tag> 浮点数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CPP 虚函数表</title>
       <link href="/2019/03/17/cppvirtual/"/>
       <url>/2019/03/17/cppvirtual/</url>
       
-        <content type="html"><![CDATA[<h2 id="CPP-手动访问虚函数表"><a href="#CPP-手动访问虚函数表" class="headerlink" title="CPP 手动访问虚函数表"></a>CPP 手动访问虚函数表</h2><pre><code>class Object{public:    Object(){}    virtual void foo1()    {        printf(&quot;foo1--&gt;%d\n&quot;,0);    }    virtual void foo2()    {        printf(&quot;foo2--&gt;%d\n&quot;,1);    }};int main(int argc, char* argv[]){    typedef void (*fun)();    Object object;    fun foo1 = (fun)(*((int*)(*(int*)(&amp;object)) + 0));    foo1();    fun foo2 = (fun)(*((int*)(*(int*)(&amp;object)) + 1));    foo2();    Object* pObject = new Object();    fun foo3 = (fun)(*((int*)(*((int*)pObject)) + 0));    foo3();    fun foo4 = (fun)(*((int*)(*((int*)pObject)) + 1));    foo4();    fun foo5 = (fun)(*(*((int **)pObject) + 0));    foo5();    fun foo6 = (fun)(*(*((int **)pObject) + 1));    foo6();    return 0;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="CPP-虚函数表"><a href="#CPP-虚函数表" class="headerlink" title="CPP 虚函数表"></a>CPP 虚函数表</h2><pre><code>#define TYPE long long *class Object{public:    Object() {}    virtual void foo1()    {        printf(&quot;%s\n&quot;, &quot;i am foo one&quot;);    }    virtual void foo2() {        printf(&quot;%s\n&quot;, &quot;i am foo two&quot;);    }};int main(){    typedef void (*fun)();    Object object;    void *vftable = *(void**)&amp;object;    fun foo[2] = {0};    foo[0] = (fun) ((TYPE)vftable)[0];    foo[1] = (fun) ((TYPE)vftable)[1];    foo[0]();    foo[1]();    return 0;}</code></pre>]]></content>
       
       
       <categories>

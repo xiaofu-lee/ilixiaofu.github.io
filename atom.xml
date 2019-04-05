@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ilixiaofu.github.io/"/>
-  <updated>2019-03-16T17:34:08.504Z</updated>
+  <updated>2019-04-05T14:41:43.366Z</updated>
   <id>https://ilixiaofu.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>CPP 手动访问虚函数表</title>
-    <link href="https://ilixiaofu.github.io/2019/03/17/cppvirtual/"/>
-    <id>https://ilixiaofu.github.io/2019/03/17/cppvirtual/</id>
-    <published>2019-03-16T17:30:04.000Z</published>
-    <updated>2019-03-16T17:34:08.504Z</updated>
+    <title>计算机内存中浮点数的表示规则</title>
+    <link href="https://ilixiaofu.github.io/2019/04/05/fu-dian-shu/"/>
+    <id>https://ilixiaofu.github.io/2019/04/05/fu-dian-shu/</id>
+    <published>2019-04-05T09:04:28.000Z</published>
+    <updated>2019-04-05T14:41:43.366Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,37 @@
       
         
         
-          &lt;h2 id=&quot;CPP-手动访问虚函数表&quot;&gt;&lt;a href=&quot;#CPP-手动访问虚函数表&quot; class=&quot;headerlink&quot; title=&quot;CPP 手动访问虚函数表&quot;&gt;&lt;/a&gt;CPP 手动访问虚函数表&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class
+          &lt;h1 id=&quot;计算机内存中浮点数的表示&quot;&gt;&lt;a href=&quot;#计算机内存中浮点数的表示&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="计算机组成原理" scheme="https://ilixiaofu.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
+    
+    
+      <category term="计算机组成原理" scheme="https://ilixiaofu.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
+    
+      <category term="浮点数" scheme="https://ilixiaofu.github.io/tags/%E6%B5%AE%E7%82%B9%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CPP 虚函数表</title>
+    <link href="https://ilixiaofu.github.io/2019/03/17/cppvirtual/"/>
+    <id>https://ilixiaofu.github.io/2019/03/17/cppvirtual/</id>
+    <published>2019-03-16T17:30:04.000Z</published>
+    <updated>2019-04-05T09:10:35.783Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;CPP-虚函数表&quot;&gt;&lt;a href=&quot;#CPP-虚函数表&quot; class=&quot;headerlink&quot; title=&quot;CPP 虚函数表&quot;&gt;&lt;/a&gt;CPP 虚函数表&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#define TYPE long long *
+
+class
         
       
     
@@ -51,7 +81,7 @@
     <link href="https://ilixiaofu.github.io/2019/03/16/yi-huo-yu-shi-xian-jia-jian-cheng-chu/"/>
     <id>https://ilixiaofu.github.io/2019/03/16/yi-huo-yu-shi-xian-jia-jian-cheng-chu/</id>
     <published>2019-03-16T15:10:59.000Z</published>
-    <updated>2019-03-16T15:23:25.311Z</updated>
+    <updated>2019-04-05T09:10:35.801Z</updated>
     
     <summary type="html">
     
@@ -81,7 +111,7 @@
     <link href="https://ilixiaofu.github.io/2019/03/15/lian-biao-fan-zhuan/"/>
     <id>https://ilixiaofu.github.io/2019/03/15/lian-biao-fan-zhuan/</id>
     <published>2019-03-15T07:27:03.000Z</published>
-    <updated>2019-03-15T07:42:54.943Z</updated>
+    <updated>2019-04-05T09:10:35.858Z</updated>
     
     <summary type="html">
     
@@ -115,7 +145,7 @@
     <link href="https://ilixiaofu.github.io/2019/03/13/carrayoutofboundary/"/>
     <id>https://ilixiaofu.github.io/2019/03/13/carrayoutofboundary/</id>
     <published>2019-03-13T03:19:05.000Z</published>
-    <updated>2019-03-13T03:32:53.131Z</updated>
+    <updated>2019-04-05T09:10:35.775Z</updated>
     
     <summary type="html">
     
@@ -143,7 +173,7 @@
     <link href="https://ilixiaofu.github.io/2019/03/13/binarysearchtree/"/>
     <id>https://ilixiaofu.github.io/2019/03/13/binarysearchtree/</id>
     <published>2019-03-13T02:52:50.000Z</published>
-    <updated>2019-03-13T03:32:53.116Z</updated>
+    <updated>2019-04-05T09:10:35.696Z</updated>
     
     <summary type="html">
     
@@ -174,7 +204,7 @@
     <link href="https://ilixiaofu.github.io/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/"/>
     <id>https://ilixiaofu.github.io/2019/03/07/c-shi-xian-guan-cha-zhe-mo-shi/</id>
     <published>2019-03-06T19:37:54.000Z</published>
-    <updated>2019-03-13T03:32:53.116Z</updated>
+    <updated>2019-04-05T09:10:35.708Z</updated>
     
     <summary type="html">
     
@@ -209,7 +239,7 @@ class
     <link href="https://ilixiaofu.github.io/2019/03/07/mi-gong-qiu-jie/"/>
     <id>https://ilixiaofu.github.io/2019/03/07/mi-gong-qiu-jie/</id>
     <published>2019-03-06T19:26:06.000Z</published>
-    <updated>2019-03-13T03:32:53.164Z</updated>
+    <updated>2019-04-05T09:10:35.851Z</updated>
     
     <summary type="html">
     
@@ -243,7 +273,7 @@ class
     <link href="https://ilixiaofu.github.io/2019/03/07/biao-da-shi-qiu-zhi/"/>
     <id>https://ilixiaofu.github.io/2019/03/07/biao-da-shi-qiu-zhi/</id>
     <published>2019-03-06T19:19:50.000Z</published>
-    <updated>2019-03-13T03:32:53.159Z</updated>
+    <updated>2019-04-05T09:10:35.823Z</updated>
     
     <summary type="html">
     
@@ -281,7 +311,7 @@ using namespace std;
     <link href="https://ilixiaofu.github.io/2019/03/07/hexo-da-jian-zhi-nan/"/>
     <id>https://ilixiaofu.github.io/2019/03/07/hexo-da-jian-zhi-nan/</id>
     <published>2019-03-06T18:33:10.000Z</published>
-    <updated>2019-03-13T03:32:53.143Z</updated>
+    <updated>2019-04-05T09:10:35.804Z</updated>
     
     <summary type="html">
     

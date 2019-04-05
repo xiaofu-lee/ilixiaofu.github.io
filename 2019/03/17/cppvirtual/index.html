@@ -4,14 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="CPP 手动访问虚函数表, blog">
-    <meta name="description" content="CPP 手动访问虚函数表class Object
+    <meta name="keywords" content="CPP 虚函数表, blog">
+    <meta name="description" content="CPP 虚函数表#define TYPE long long *
+
+class Object
 {
 public:
-    Object(){}
+    Object() {}
     virtual void foo1()
     {
-        printf(&amp;quot;foo1--&amp;gt;%d\n&amp;quot">
+        printf(&amp;q">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +21,7 @@ public:
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>CPP 手动访问虚函数表 | bluce-lee</title>
+    <title>CPP 虚函数表 | bluce-lee</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -276,13 +278,13 @@ public:
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        CPP 手动访问虚函数表
+                        CPP 虚函数表
                     </div>
                 </div>
             </div>
@@ -343,7 +345,7 @@ public:
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        100
+                        75
                     </div>
                     
 
@@ -366,40 +368,32 @@ public:
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="CPP-手动访问虚函数表"><a href="#CPP-手动访问虚函数表" class="headerlink" title="CPP 手动访问虚函数表"></a>CPP 手动访问虚函数表</h2><pre><code>class Object
+                <h2 id="CPP-虚函数表"><a href="#CPP-虚函数表" class="headerlink" title="CPP 虚函数表"></a>CPP 虚函数表</h2><pre><code>#define TYPE long long *
+
+class Object
 {
 public:
-    Object(){}
+    Object() {}
     virtual void foo1()
     {
-        printf(&quot;foo1--&gt;%d\n&quot;,0);
+        printf(&quot;%s\n&quot;, &quot;i am foo one&quot;);
     }
-    virtual void foo2()
-    {
-        printf(&quot;foo2--&gt;%d\n&quot;,1);
+    virtual void foo2() {
+        printf(&quot;%s\n&quot;, &quot;i am foo two&quot;);
     }
 };
 
-int main(int argc, char* argv[])
+
+int main()
 {
     typedef void (*fun)();
-
     Object object;
-    fun foo1 = (fun)(*((int*)(*(int*)(&amp;object)) + 0));
-    foo1();
-    fun foo2 = (fun)(*((int*)(*(int*)(&amp;object)) + 1));
-    foo2();
-
-    Object* pObject = new Object();
-    fun foo3 = (fun)(*((int*)(*((int*)pObject)) + 0));
-    foo3();
-    fun foo4 = (fun)(*((int*)(*((int*)pObject)) + 1));
-    foo4();
-
-    fun foo5 = (fun)(*(*((int **)pObject) + 0));
-    foo5();
-    fun foo6 = (fun)(*(*((int **)pObject) + 1));
-    foo6();
+    void *vftable = *(void**)&amp;object;
+    fun foo[2] = {0};
+    foo[0] = (fun) ((TYPE)vftable)[0];
+    foo[1] = (fun) ((TYPE)vftable)[1];
+    foo[0]();
+    foo[1]();
     return 0;
 }
 </code></pre>
@@ -549,7 +543,7 @@ int main(int argc, char* argv[])
                     </span>
                     <a href="https://ilixiaofu.github.io" class="b-link-green">bluce-lee</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/17/cppvirtual/" class="b-link-green">CPP 手动访问虚函数表</a>
+                    <a href="/2019/03/17/cppvirtual/" class="b-link-green">CPP 虚函数表</a>
                 </p>
             </div>
         </div>
@@ -572,56 +566,49 @@ int main(int argc, char* argv[])
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/03/17/cppvirtual/">
+                <a href="/2019/04/05/fu-dian-shu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="CPP 手动访问虚函数表">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="计算机内存中浮点数的表示规则">
                         
-                        <span class="card-title">CPP 手动访问虚函数表</span>
+                        <span class="card-title">计算机内存中浮点数的表示规则</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">CPP 手动访问虚函数表class Object
-{
-public:
-    Object(){}
-    virtual void foo1()
-    {
-        printf(&quot;foo1--&gt;%d\n&quot</div>
+                    <div class="summary">计算机内存中浮点数的表示float和double在存储方式上都遵从IEEE的规范
+float类型表示方法float的内存存储方式如下图所示：
+
+第31位表示符号位
+第30位表示移位方向 1左移 0右移
+第23-29位表示指数  左移为正，右</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-17
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-05
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/C/" class="post-category" target="_blank">
-                                    C++
+                            <a href="/categories/计算机组成原理/" class="post-category" target="_blank">
+                                    计算机组成原理
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/" target="_blank">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/tags/计算机组成原理/" target="_blank">
+                        <span class="chip bg-color">计算机组成原理</span>
                     </a>
                     
-                    <a href="/tags/函数指针/" target="_blank">
-                        <span class="chip bg-color">函数指针</span>
-                    </a>
-                    
-                    <a href="/tags/虚函数/" target="_blank">
-                        <span class="chip bg-color">虚函数</span>
+                    <a href="/tags/浮点数/" target="_blank">
+                        <span class="chip bg-color">浮点数</span>
                     </a>
                     
                 </div>
@@ -742,7 +729,7 @@ int mul(int arg1, int </div>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">2.9k</span>
+                <span class="white-color">3.4k</span>
             
 
             
